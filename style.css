@@ -963,7 +963,7 @@ nav.sidebar-hidden {
     0 10px 20px rgba(0, 0, 0, 0.08);
   transition: margin-left 250ms ease, width 250ms ease;
   border-collapse: collapse;
-  height: 900px;
+  height: 905px;
 }
 
 .main-page.sidebar-hidden {

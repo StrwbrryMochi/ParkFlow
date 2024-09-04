@@ -35,3 +35,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   insertParkingSlot($slot_id, $license_plate, $user_type, $vehicle_type, $status);
 }
+

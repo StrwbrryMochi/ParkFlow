@@ -30,11 +30,14 @@
     <link rel="icon" href="../img/logo.png" type="img/x-icon" />
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../css/sweetalert.css">
+    <link rel="stylesheet" href="../css/toastr.css">
+    <script src="../js/toastr.js"></script>
     <script src="../js/sweetalert.js"></script>
     <title>Dashboard | BCP</title>
   </head>
   <body>
     <main>
+
       
       <!-- Side Bar -->
       <div class="sidebar" id="sideBar">
@@ -199,7 +202,7 @@
 
           <!-- Search Bar -->
           <div class="search-create-container">
-  <input type="text" id="search-bar" class="search-bar" placeholder="Search...">
+          <input type="text" id="search-bar" class="search-bar" placeholder="Search...">
 
  <!-- Button to Open the Modal -->
 <button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#modalId" id="create-btn">
@@ -216,16 +219,19 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="insertForm" method="POST">
+        <form action="../php/parkingExecution.php" id="insertForm" method="POST">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="slotId" class="form-label">Slot ID</label>
               <select class="form-select" id="slotId" name="slot_id" required>
                 <option value="" disabled selected>Choose Slot ID</option>
-                <!-- Populate with slot IDs -->
-                <option value="1">Slot 1</option>
-                <option value="2">Slot 2</option>
-                <option value="3">Slot 3</option>
+                <?php
+                include '../php/parkingFunction.php'; // Include the file that contains the function
+                $slots = getAvailableSlots(); // Get available slots
+                foreach ($slots as $slot_id) {
+                echo "<option value=\"$slot_id\">Slot $slot_id</option>";
+               }
+             ?>
               </select>
             </div>
             <div class="col-md-6 mb-3">
@@ -269,7 +275,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Add</button>
+            <button type="submit" name="add_parking" class="btn btn-primary">Add</button>
           </div>
         </form>
       </div>
@@ -282,12 +288,8 @@
   var modalId = document.getElementById('modalId');
  
   modalId.addEventListener('show.bs.modal', function (event) {
-      // Button that triggered the modal
       let button = event.relatedTarget;
-      // Extract info from data-bs-* attributes
       let recipient = button.getAttribute('data-bs-whatever');
- 
-    // Use above variables to manipulate the DOM
   });
  </script>
  
@@ -310,46 +312,42 @@
         </thead>
     </table>
     <div class="parking-table-body-container">
-        <table class="parking-table">
+    <table class="parking-table">
+          <?php include_once '../php/parkingFunction.php';
+            $fetchParking = fetchParking();
+          
+          ?>
             <tbody>
+              <?php foreach ($fetchParking as $parkingData): ?>      
+            <tr>
+                <td><?php echo htmlspecialchars($parkingData['slot_id']) ?></td>
+                <td><?php echo htmlspecialchars($parkingData['license_plate']) ?></td>
+                <td><?php echo htmlspecialchars($parkingData['user_type']) ?></td>
+                <td><?php echo htmlspecialchars($parkingData['vehicle_type']) ?></td>
+                <td><div class="<?php echo htmlspecialchars($parkingData['ClassADD']); ?>"><span class="status-dot"></span><?php echo htmlspecialchars($parkingData['status']); ?></div></td>
+
+                <td>2 hrs</td>
+                <td>Paid</td>
+                <td><button>Details</button></td>
+            </tr>
             </tbody>
+            <?php endforeach ?>
         </table>
     </div>
 </div>
-
 
         </div>
           </div>
         </div>
       </section>
+
     </main>
 
+    
 
+    <?php include '../php/alerts.php' ?>
     <!-- JS Script -->
-    <script>
-        $(document).ready(function() {
-            $("#insertForm").on("submit", function(event) {
-                event.preventDefault(); // Prevent the default form submission
-
-                $.ajax({
-                    url: "../php/fetchparkingData.php", // The PHP file that handles the form data
-                    type: "POST",
-                    data: $(this).serialize(), // Serialize the form data
-                    success: function(response) {
-                        $("#message").html(response); // Display the response from PHP
-
-                        // Close the modal
-                        var modalElement = document.getElementById('modalId');
-                        var modal = bootstrap.Modal.getInstance(modalElement);
-                        modal.hide();
-                    },
-                    error: function(xhr, status, error) {
-                        $("#message").html("An error occurred: " + error);
-                    }
-                });
-            });
-        });
-    </script>
+    
     <script src="../script/modal.js"></script>
     <script src="../script/sidebar.js"></script>
     <script src="../script/darkmode.js"></script>
