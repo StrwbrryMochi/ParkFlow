@@ -1,7 +1,7 @@
 <?php
 
 
-
+// Sweet Alerts
 if (isset($_GET['welcome_user']) && $_GET['welcome_user'] == 'true') {
     $profilePhoto = $Photo;  // Make sure $photo is defined and set before using it
     
@@ -74,11 +74,46 @@ if (isset($_GET['register_photo_success']) && $_GET['register_photo_success'] ==
 }
 
 
+if (isset($_GET['checkout_slot']) && $_GET['checkout_slot'] == 'true') {
+    echo "<script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'Slot Successfully Processed!',
+        });
+    </script>";
+}
 
 
+
+// Toaster Alerts
 if (isset($_GET['add_slot']) && $_GET['add_slot'] == 'true') {
     echo "<script>
         toastr.success(' ', 'Slot Added');
+
+        toastr.options = {
+            closeButton: true,
+            debug: false,
+            newestOnTop: false,
+            progressBar: false,
+            positionClass: 'toast-top-right',
+            preventDuplicates: true,
+            onclick: null,
+            showDuration: '300',
+            hideDuration: '1000',
+            timeOut: '5000',
+            extendedTimeOut: '1000',
+            showEasing: 'swing',
+            hideEasing: 'linear',
+            showMethod: 'fadeIn',
+            hideMethod: 'fadeOut'
+        };
+    </script>";
+}
+
+if (isset($_GET['slot_edit']) && $_GET['slot_edit'] == 'true') {
+    echo "<script>
+        toastr.success(' ', 'Slot Successfully Edited!');
 
         toastr.options = {
             closeButton: true,

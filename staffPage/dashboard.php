@@ -34,7 +34,7 @@ include_once '../php/parkingFunction.php';
         <div class="sidebar" id="sideBar">
             <div class="sidebar-content">
                 <div class="sidebar-logo">
-                    <img src="../img/Png.png" alt="Logo" />
+                    <img src="../img/logoes.jpg" alt="Logo" />
                 </div>
                 <div class="sidebar-text">
                     <ul>
@@ -80,14 +80,90 @@ include_once '../php/parkingFunction.php';
 
         <!-- Notification Modal -->
         <div class="notif-modal">
-            <div class="nModal-content">
-                <h5 class="nTitle">Notifications</h5>
-                <div class="notif-divider"></div>
-                <div class="notif-items">
-                    <?php // Notifications loop here ?>
-                </div>
-            </div>
+  <div class="nModal-content">
+    <h5 class="nTitle">Notifications</h5>
+    <div class="notif-divider"></div>
+    <div class="notif-items">
+      <div class="notif-item">
+        <img src="../img/hye.jpg" alt="User Icon" class="notif-img">
+        <div class="notif-text">
+          <p class="notif-title">Admin messaged you: Kill yourself</p>
+          <p class="notif-time">2 mins ago</p>
         </div>
+        <button class="notif-btn">
+          <i class="fa-solid fa-book"></i>
+        </button>
+      </div>
+
+      <div class="notif-item">
+        <img src="../img/∘˙○🫧⋆｡˚.jpg" alt="User Icon" class="notif-img">
+        <div class="notif-text">
+          <p class="notif-title">Admin messaged you: Kill yourself</p>
+          <p class="notif-time">2 mins ago</p>
+        </div>
+        <button class="notif-btn">
+          <i class="fa-solid fa-book"></i>
+        </button>
+      </div>
+
+      <div class="notif-item">
+        <img src="../img/1.jpg" alt="User Icon" class="notif-img">
+        <div class="notif-text">
+          <p class="notif-title">Admin messaged you: Kill yourself</p>
+          <p class="notif-time">3 mins ago</p>
+        </div>
+        <button class="notif-btn">
+          <i class="fa-solid fa-book"></i>
+        </button>
+      </div>
+
+      <div class="notif-item">
+        <img src="../img/hehe.jpg" alt="User Icon" class="notif-img">
+        <div class="notif-text">
+          <p class="notif-title">Admin messaged you: Kill yourself</p>
+          <p class="notif-time">4 mins ago</p>
+        </div>
+        <button class="notif-btn">
+          <i class="fa-solid fa-book"></i>
+        </button>
+      </div>
+
+      <div class="notif-item">
+        <img src="../img/smug.jpg" alt="User Icon" class="notif-img">
+        <div class="notif-text">
+          <p class="notif-title">Admin messaged you: Kill yourself</p>
+          <p class="notif-time">5 mins ago</p>
+        </div>
+        <button class="notif-btn">
+          <i class="fa-solid fa-book"></i>
+        </button>
+      </div>
+
+      <div class="notif-item">
+        <img src="../img/meanji.jpg" alt="User Icon" class="notif-img">
+        <div class="notif-text">
+          <p class="notif-title">Admin messaged you: Kill yourself</p>
+          <p class="notif-time">6 mins ago</p>
+        </div>
+        <button class="notif-btn">
+          <i class="fa-solid fa-book"></i>
+        </button>
+      </div>
+
+      <div class="notif-item">
+        <img src="../img/goofy.jpg" alt="User Icon" class="notif-img">
+        <div class="notif-text">
+          <p class="notif-title">Staff messaged you: Kill yourself</p>
+          <p class="notif-time">7 mins ago</p>
+        </div>
+        <button class="notif-btn">
+          <i class="fa-solid fa-book"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
 
         <!-- Profile Modal -->
         <div class="profile-modal">
@@ -169,46 +245,10 @@ include_once '../php/parkingFunction.php';
                         </div>
                     </div>
                 </div>
-
-                <!-- Dashboard Table -->
-                <div class="table-container">
-                    <table class="parking-table">
-                        <thead>
-                            <tr>
-                                <th>Slot ID</th>
-                                <th>License Plate No</th>
-                                <th>User Type</th>
-                                <th>Vehicle Type</th>
-                                <th>Status</th>
-                                <th>Duration</th>
-                                <th>Payment Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                    </table>
-                    <div class="table-body-container">
-                    <table class="parking-table">
-                             <?php include_once '../php/parkingFunction.php';
-                             $fetchParking = fetchParking();
-                            ?>
-                    <tbody>
-                            <?php foreach ($fetchParking as $parkingData): ?>      
-                    <tr>
-                    <td><?php echo htmlspecialchars($parkingData['slot_id']) ?></td>
-                    <td><?php echo htmlspecialchars($parkingData['license_plate']) ?></td>
-                    <td><?php echo htmlspecialchars($parkingData['user_type']) ?></td>
-                    <td><?php echo htmlspecialchars($parkingData['vehicle_type']) ?></td>
-                    <td><div class="<?php echo htmlspecialchars($parkingData['ClassADD']); ?>"><span class="status-dot"></span><?php echo htmlspecialchars($parkingData['status']); ?></div></td>
-
-                      <td>2 hrs</td>
-                    <td>Paid</td>
-                    <td><button>Details</button></td>
-                </tr>
-                </tbody>
-                <?php endforeach ?>
-            </table>
-        </div>
-    </div>
+                <div class="graph">
+                <img src="../img/stonks.jpg" alt="">
+                <h2>GRAPH.JPG HAHA...🥲</h2>
+                </div>
                 </div>
             </div>
         </section>

@@ -12,7 +12,10 @@ function darkMode() {
   var notifModal = document.querySelectorAll(".notif-modal");
   var parkingTable = document.querySelector(".parking-table");
   var parkingtableTh = document.querySelector(".parking-table th");
-  var tableContainer = document.querySelector(".table-container");
+  var parkingtableTd = document.querySelector(".parking-table td");
+  var parkingtableTr = document.querySelector(".parking-table tr");
+  var actionContainer = document.querySelector(".actionButton button");
+  var tableContainer = document.querySelector(".table-container-parking");
 
   // Buttons
   var sideBarBtn = document.getElementById("sideBarBtn");

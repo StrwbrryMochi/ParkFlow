@@ -43,9 +43,9 @@
           </div>
           <div class="sidebar-text">
             <ul>
-              <li><a href="dashboard.php"><i class="fa-solid fa-table"></i> <span>Dashboard</span></a></li>
+              <li><a href="adminDashboard.php"><i class="fa-solid fa-table"></i> <span>Dashboard</span></a></li>
               <li><a href="reservations.html"><i class="fa-solid fa-book"></i> <span>Reservations</span></a></li>
-              <li><a href="parkinglotmgmnt.php"><i class="fa-solid fa-car"></i> <span>Parking Slot Management</span></a></li>
+              <li><a href="adminParkinglotmgmnt.php"><i class="fa-solid fa-car"></i> <span>Parking Slot Management</span></a></li>
               <li><a href="usermgmnt.php"><i class="fa-solid fa-user"></i> <span>User Management</span></a></li>
               <li><a href="reservations.html"><i class="fa-solid fa-clock-rotate-left"></i></i> <span>Activity Feed</span></a></li>
               <li><a href="concerns.html"><i class="fa-solid fa-bullhorn"></i> <span>Concerns</span></a></li>

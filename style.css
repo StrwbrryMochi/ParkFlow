@@ -14,12 +14,12 @@
   --sidebarbtn-color: #eeedef;
   --dmodebtn-light: #fff0d6;
   --dmodeicon-light: #665e4f;
-  --transition: 0.2s ease;
+  --transition: 0.3s ease;
 }
 
 body {
   background-color: var(--bg-color);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.6s, color 0.6s;
   color: #000000;
 }
 
@@ -447,7 +447,7 @@ input[type="file"] {
   font-size: 0.875rem;
   font-weight: 600;
   width: 100%;
-  transition: background-color 0.3s;
+  transition: background-color 0.6s;
 }
 
 .sidebar-text ul li a i {
@@ -560,7 +560,7 @@ nav.sidebar-hidden {
   display: block;
   height: 38px;
   margin-left: 10px;
-  transition: opacity 0.3s ease;
+  transition: opacity var(--transition);
 }
 
 .logo img:hover {
@@ -710,7 +710,7 @@ nav.sidebar-hidden {
 .notif-items {
   max-height: 450px;
   overflow-y: hidden;
-  transition: overflow 0.3s ease;
+  transition: overflow var(--transition);
 }
 
 .notif-modal:hover .notif-items {
@@ -905,7 +905,8 @@ nav.sidebar-hidden {
   width: 100%;
   max-width: 250px;
   margin: 0 auto;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  transition: background-color var(--transition), color var(--transition),
+    transform var(--transition);
 }
 
 .modalBtn a i {
@@ -963,18 +964,20 @@ nav.sidebar-hidden {
     0 10px 20px rgba(0, 0, 0, 0.08);
   transition: margin-left 250ms ease, width 250ms ease;
   border-collapse: collapse;
-  height: 905px;
+  height: 903px;
+}
+
+.main-page h2 {
+  margin-top: 7px;
+  margin-bottom: 5px;
+  color: #1c008c;
+  font-size: 1.875rem;
+  margin-left: 10px;
 }
 
 .main-page.sidebar-hidden {
   margin-left: 20px;
   width: calc(100% - 40px);
-}
-
-.main-page h2 {
-  margin-bottom: 20px;
-  color: #1c008c;
-  font-size: 1.5rem;
 }
 
 /* Status Cards */
@@ -996,7 +999,7 @@ nav.sidebar-hidden {
   min-width: 200px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-  transition: 0.3s ease;
+  transition: var(--transition);
   user-select: none;
 }
 
@@ -1047,6 +1050,35 @@ nav.sidebar-hidden {
   background: linear-gradient(45deg, #927d07, #d8a929, #d4af37, #e6d88e);
 }
 
+/* Graph LoL */
+.graph {
+  display: grid;
+  width: 100%px;
+  justify-content: center;
+  text-align: center;
+}
+
+.graph img {
+  width: 900px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .table-container {
   height: 695px;
   max-height: 695px;
@@ -1063,12 +1095,38 @@ nav.sidebar-hidden {
 
 .parking-table th,
 .parking-table td {
-  text-align: center;
-  padding: 10px;
   border-bottom: 1px solid #ccc;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding: 10px;
+}
+
+/* Slot ID */
+.parking-table th:nth-child(1),
+.parking-table td:nth-child(1) {
+  text-align: center;
+  width: 10%;
+}
+
+.parking-table th:nth-child(3),
+.parking-table td:nth-child(2),
+.parking-table th:nth-child(3),
+.parking-table td:nth-child(3),
+.parking-table th:nth-child(4),
+.parking-table td:nth-child(4) {
+  justify-content: flex-start;
+}
+
+.parking-table th:nth-child(5),
+.parking-table td:nth-child(5),
+.parking-table th:nth-child(6),
+.parking-table td:nth-child(6),
+.parking-table th:nth-child(7),
+.parking-table td:nth-child(7),
+.parking-table th:nth-child(8),
+.parking-table td:nth-child(8) {
+  text-align: center;
 }
 
 .parking-table th:nth-child(1) {
@@ -1088,7 +1146,7 @@ nav.sidebar-hidden {
 }
 
 .table-body-container {
-  max-height: 645px;
+  max-height: 648px;
   overflow-y: auto;
 }
 
@@ -1096,62 +1154,21 @@ nav.sidebar-hidden {
   vertical-align: middle;
 }
 
+.parking-table button {
+  opacity: 0;
+}
+
+.parking-table tr:hover button {
+  opacity: 1;
+  transition: var(--transition);
+}
+
+.parking-table tr:hover {
+  transition: var(--transition);
+  background-color: #e2e7ec86;
+}
+
 /* Slot ID */
-.parking-table th:nth-child(1),
-.parking-table td:nth-child(1) {
-  width: 5%;
-}
-
-/* License Plate Number */
-.parking-table th:nth-child(2),
-.parking-table td:nth-child(2) {
-  width: 15%;
-}
-
-/* User Type */
-.parking-table th:nth-child(3),
-.parking-table td:nth-child(3) {
-  width: 10%;
-}
-
-/* Vehicle Type */
-.parking-table th:nth-child(4),
-.parking-table td:nth-child(4) {
-  width: 15%;
-}
-
-/* Status */
-.parking-table th:nth-child(5) {
-  width: 15%;
-}
-.parking-table td:nth-child(5) {
-  width: 15%;
-  transform: translateX(-10px);
-}
-
-/* Duration */
-.parking-table th:nth-child(6) {
-  width: 15%;
-}
-.parking-table td:nth-child(6) {
-  width: 13%;
-}
-
-/* Payment Status */
-.parking-table th:nth-child(7) {
-  width: 14%;
-}
-.parking-table td:nth-child(7) {
-  width: 16%;
-}
-
-/* Action */
-.parking-table td:nth-child(8) {
-  width: 14%;
-}
-.parking-table th:nth-child(8) {
-  width: 16%;
-}
 
 .parking-table button {
   padding: 5px 10px;
@@ -1164,30 +1181,6 @@ nav.sidebar-hidden {
 
 .parking-table button:hover {
   background-color: #0056b3;
-}
-
-.status-item {
-  display: flex;
-  align-items: center;
-}
-
-.status-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-right: 5px;
-}
-
-.status-item.available .status-dot {
-  background-color: green;
-}
-
-.status-item.occupied .status-dot {
-  background-color: red;
-}
-
-.status-item.reserved .status-dot {
-  background-color: orange;
 }
 
 /* Status item */
@@ -1233,41 +1226,115 @@ nav.sidebar-hidden {
   background-color: #5b2c8c;
 }
 
+.pending {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  background-color: #fdedb7;
+  color: #504214;
+}
+
+.pending-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+  background-color: #504214;
+}
+
 /* Create Button (parkinglotmgmnt.php) */
-.button-container {
+.search-create-container h2 {
+  margin-top: 7px;
+  color: #1c008c;
+  font-size: 1.875rem;
+  margin-left: 20px;
+}
+
+.createbtn-container {
   display: flex;
-  justify-content: flex-end; /* Aligns button to the right */
-  margin-top: 20px; /* Space between table and button */
+  margin-right: 20px;
 }
 
 #create-btn {
-  padding: 8px 16px;
-  margin-left: 100px;
-  font-size: 16px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 600;
   background-color: #007bff;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  transition: var(--transition);
 }
 
 #create-btn:hover {
   background-color: #0056b3;
+  transform: scale(1.0875);
 }
 
 /* Search Bar (parkinglotmgmnt.php) */
 .search-create-container {
   display: flex;
   align-items: center;
-  margin-bottom: 20px; /* Adjust as needed */
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.search-bar {
-  flex: 1;
-  padding: 10px;
+.search-container {
+  align-items: center;
+  display: flex;
+  justify-content: right;
+  width: 73%;
+}
+
+form .no-submit {
+  width: 180px;
+  align-items: center;
+  color: white;
+  right: 0;
+  display: flex;
+  padding: 2px;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  margin: 0 0;
+}
+
+input.no-submit {
+  border: 1px solid white;
+  width: 300px;
+  padding: 9px 4px 9px 4px;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg");
+  background-size: 13px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+
+input[type="search"] {
+  border: none;
+  background-color: #fff;
+  margin: 0;
+  padding: 7px 8px 7px 30px;
   font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  color: inherit;
+  border: 1px solid grey;
+  border-radius: inherit;
+  border-radius: 100px;
+}
+
+input[type="search"]::placeholder {
+  color: grey;
+}
+
+input[type="search"]:focus {
+  box-shadow: 0 0 3px 0 #3f69a8;
+  border-color: #3f69a8;
+  outline: none;
 }
 
 .table-container-parking {
@@ -1279,8 +1346,98 @@ nav.sidebar-hidden {
 }
 
 .parking-table-body-container {
-  max-height: 700px;
+  max-height: 755px;
   overflow-y: auto;
+}
+
+.actionContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#check_outBtn,
+#editBtn {
+  padding: 8px 14px;
+  background-color: #0056b3;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#check_outBtn:hover,
+#editBtn:hover {
+  transform: scale(1.0875);
+  background-color: #00356d;
+}
+
+.custom-input-group {
+  display: flex;
+  align-items: center;
+}
+
+.custom-input-group-text {
+  background-color: #12151f; /* Background color */
+  color: #fff;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  padding: 0.67rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-footer button:nth-child(1) {
+  background-color: #ccc;
+  border: 0.5px none;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  transition: var(--transition);
+  color: #000000;
+}
+
+.modal-footer button:nth-child(1):hover {
+  background-color: #686868;
+  color: #fff;
+}
+
+.modal-footer button:nth-child(2) {
+  background-color: #007bff;
+  border: 0.5px none;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  transition: var(--transition);
+}
+
+.modal-footer button:nth-child(2):hover {
+  background-color: #004b9b;
+}
+
+.modal-header button {
+  background-color: white;
+}
+
+.form-control {
+  flex: 1;
+  margin-left: -1px;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.modal-header {
+  background-color: #12151f;
+  color: #fff;
+}
+
+.modal-body {
+  background-color: #f9f9fa;
 }
 
 /* Dark Mode */
@@ -1294,7 +1451,7 @@ nav,
 #darkModeBtn,
 #notifBtn,
 #userBtn {
-  transition: background-color 0.3s ease, color 0.1s ease;
+  transition: background-color var(--transition), color 0.1s ease;
 }
 
 nav.darkMode {
@@ -1362,10 +1519,23 @@ nav.darkMode {
   border: 1px solid #333;
 }
 
-.darkMode .table-container {
-  border: 1px solid #12151f;
+.darkMode .table-container-parking {
+  border: 1px solid #2c2f3a;
+}
+
+.darkMode .parking-table {
+  background-color: #12151f;
+  color: #fff;
 }
 
 .darkMode .parking-table th {
   background-color: #545a72;
+}
+
+.darkMode .parking-table td {
+  border-bottom: 1px solid #2c2f3a;
+}
+
+.darkMode .parking-table tr:hover {
+  background-color: #090c11;
 }
