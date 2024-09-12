@@ -84,6 +84,15 @@ if (isset($_GET['checkout_slot']) && $_GET['checkout_slot'] == 'true') {
     </script>";
 }
 
+if (isset($_GET['slot_deleted']) && $_GET['slot_deleted'] == 'true') {
+    echo "<script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: 'Slot Successfully Removed!',
+        });
+    </script>";
+}
 
 
 // Toaster Alerts

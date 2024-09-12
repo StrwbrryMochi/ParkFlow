@@ -16,24 +16,21 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <!-- Bootstrap CSS -->
+                  <!-- Links -->
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <script src="../js/bootstrap.bundle.js"></script>
     <script src="../js/jquery-3.7.1.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="icon" href="../img/logo.png" type="img/x-icon" />
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../css/sweetalert.css">
     <link rel="stylesheet" href="../css/toastr.css">
     <script src="../js/toastr.js"></script>
     <script src="../js/sweetalert.js"></script>
-    <title>Dashboard | BCP</title>
+    <link rel="stylesheet" href="../css/aos.css">
+    <script src="../js/aos.js"></script>
+    <title>Slot Management | BCP</title>
+
   </head>
   <body>
     <main>
@@ -43,19 +40,22 @@
       <div class="sidebar" id="sideBar">
         <div class="sidebar-content">
           <div class="sidebar-logo">
-            <img src="../img/Png.png" alt="" />
+            <img src="../img/logoes.jpg" alt="" />
           </div>
           <div class="sidebar-text">
             <ul>
-              <li><a href="dashboard.php"><i class="fa-solid fa-table"></i> <span>Dashboard</span></a></li>
+              <li><a href="adminDashboard.php"><i class="fa-solid fa-table"></i> <span>Dashboard</span></a></li>
               <li><a href="reservations.html"><i class="fa-solid fa-book"></i> <span>Reservations</span></a></li>
-            <li><a href="parkinglotmgmnt.php"><i class="fa-solid fa-car"></i> <span>Parking Slot Management</span></a></li>
+              <li><a href="adminParkinglotmgmnt.php"><i class="fa-solid fa-car"></i> <span>Parking Slot Management</span></a></li>
+              <li><a href="usermgmnt.php"><i class="fa-solid fa-user"></i> <span>User Management</span></a></li>
               <li><a href="reservations.html"><i class="fa-solid fa-clock-rotate-left"></i></i> <span>Activity Feed</span></a></li>
               <li><a href="concerns.html"><i class="fa-solid fa-bullhorn"></i> <span>Concerns</span></a></li>
+              <li><a href="configuration.html"><i class="fa-solid fa-gear"></i> <span>Configuration</span></a></li>
             </ul>
           </div>
         </div>
       </div>
+
 
       <!-- Navigation Bar -->
       <nav>
@@ -85,7 +85,8 @@
         </div>
       </nav>
 
-   <!-- Notification Modal -->
+
+<!-- Notification Modal -->
 <div class="notif-modal">
   <div class="nModal-content">
     <h5 class="nTitle">Notifications</h5>
@@ -167,51 +168,59 @@
           <i class="fa-solid fa-book"></i>
         </button>
       </div>
-
     </div>
   </div>
 </div>
 
-      <!-- Profile Modal -->
-      <div class="profile-modal">
-        <div class="pModal-content">
-          <img src="<?php echo "$Photo" ?>" alt="">
-          <div class="profile-details">
-            <p class="profile-name"><?php echo "$Name "?></p>
-            <div class="profile-info">
-              <span class="profile-dot"></span>
-              <span class="profile-id"><?php echo " $userID" ?></span>
-            </div>
-          </div>
-        </div>
-        <hr class="profile-divider">
-        <div class="modalBtn">
-          <ul>
-            <li><a href="#"><i class="fa-regular fa-user"></i><span>Profile</span></a></li>
-            <li><a href="#"><i class="fa-solid fa-gear"></i><span>Settings</span></a></li>
-            <li><a href="../php/logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Log Out</span></a></li>
-          </ul>
-        </div>
-      </div>
+
+                  <!-- Profile Modal -->
+                  <div class="profile-modal">
+                    <div class="pModal-content">
+                      <img src="<?php echo "$Photo" ?>" alt="">
+                      <div class="profile-details">
+                        <p class="profile-name"><?php echo "$Name "?></p>
+                        <div class="profile-info">
+                          <span class="profile-dot"></span>
+                          <span class="profile-id"><?php echo " $userID" ?></span>
+                        </div>
+                      </div>
+                    </div>
+                    <hr class="profile-divider">
+                    <div class="modalBtn">
+                      <ul>
+                        <li><a href="profile.php"><i class="fa-regular fa-user"></i><span>Profile</span></a></li>
+                        <li><a href="#"><i class="fa-solid fa-gear"></i><span>Settings</span></a></li>
+                        <li><a href="../php/logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Log Out</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+
 
         <!-- Main Display -->
-      <section>
+        <section>
         <!-- Dashboard -->
         <div class="main-page">
-          <h2>Slot Management</h2>
 
           <!-- Search Bar -->
           <div class="search-create-container">
-          <input type="text" id="search-bar" class="search-bar" placeholder="Search...">
+          <h2 >Slot Management</h2>
+          <div class="search-container">
+        <form class="no-submit">
+            <input class="no-submit" type="search" id="search" autocomplete="off" placeholder="Search...">
+        </form>
+    </div>
 
  <!-- Button to Open the Modal -->
-<button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#createBtn" id="create-btn">
-  Add Slot
+  <div class="createbtn-container">
+<button type="button" class="btn btn-primary btn-md" data-bs-toggle="modal" data-bs-target="#addModal" id="create-btn">
+<i class="fa-solid fa-plus"></i> Add Slot
 </button>
+</div>
+</div>
 
 
-            <!-- Create Modal -->
-<div class="modal fade" id="createBtn" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+            <!-- Add a slot Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -221,8 +230,10 @@
       <div class="modal-body">
         <form action="../php/parkingExecution.php" id="insertForm" method="POST">
           <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-12 mb-3col-12 mb-3">
               <label for="slotId" class="form-label">Slot ID</label>
+              <div class="custom-input-group">
+              <span class="custom-input-group-text"><i class="fas fa-hashtag"></i></span>
               <select class="form-select" id="slotId" name="slot_id" required>
                 <option value="" disabled selected>Choose Slot ID</option>
                 <?php
@@ -233,28 +244,37 @@
                }
              ?>
               </select>
+              </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-12 mb-3">
               <label for="status" class="form-label">Status</label>
-              <select class="form-select" id="status" name="status" required>
+              <div class="custom-input-group">
+              <span class="custom-input-group-text"><i class="fas fa-info-circle"></i></span>
+              <select class="form-select" id="status" name="status" >
                 <option value="" disabled selected>Choose Status</option>
                 <option value="Occupied">Occupied</option>
                 <option value="Reserved">Reserved</option>
               </select>
+              </div>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-12 mb-3">
               <label for="userType" class="form-label">User Type</label>
-              <select class="form-select" id="userType" name="user_type" required>
+              <div class="custom-input-group">
+              <span class="custom-input-group-text"><i class="fas fa-user-tag"></i></span>
+              <select class="form-select" id="userType" name="user_type" >
                 <option value="" disabled selected>Choose User Type</option>
                 <option value="VIP">VIP</option>
                 <option value="Regular">Regular</option>
                 <option value="Visitor">Visitor</option>
               </select>
+              </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-12 mb-3">
               <label for="vehicleType" class="form-label">Vehicle Type</label>
+              <div class="custom-input-group">
+              <span class="custom-input-group-text"><i class="fas fa-car"></i></span>
               <select class="form-select" id="vehicleType" name="vehicle_type" required>
                 <option value="" disabled selected>Choose Vehicle Type</option>
                 <option value="Car">Car</option>
@@ -265,13 +285,17 @@
                 <option value="Pickup Truck">Pickup Truck</option>
                 <option value="Minivan">Minivan</option>
               </select>
+              </div>
             </div>
           </div>
-          <div class="row justify-content-center">
-            <div class="col-md-6 mb-3 d-flex justify-content-center">
+          <div class="rowcol-12 mb-3col-12 mb-3">
+            <div class="col-12 mb-3">
               <div class="form-group">
                 <label for="licensePlate" class="form-label">License Plate Number</label>
+                <div class="custom-input-group">
+                <span class="custom-input-group-text"><i class="fas fa-id-card"></i></span>
                 <input type="text" class="form-control" id="licensePlate" name="license_plate" placeholder="Enter License Plate No." required>
+                </div>
               </div>
             </div>
           </div>
@@ -286,30 +310,19 @@
   </div>
 </div>
 
-
- <script>
-  var modalId = document.getElementById('modalId');
  
-  modalId.addEventListener('show.bs.modal', function (event) {
-      let button = event.relatedTarget;
-      let recipient = button.getAttribute('data-bs-whatever');
-  });
- </script>
- 
-</div>
-
 <!-- Dashboard Table -->
 <div class="table-container-parking">
     <table class="parking-table">
         <thead>
             <tr>
                 <th>Slot ID</th>
-                <th>License Plate No</th>
+                <th>License Plate</th>
                 <th>User Type</th>
                 <th>Vehicle Type</th>
                 <th>Status</th>
                 <th>Time in</th>
-                <th>Time out</th>
+                <th>Payment Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -318,18 +331,11 @@
         <table class="parking-table">
             <tbody>
                 <?php 
-                include_once '../php/parkingFunction.php'; 
+                include_once '../php/parkingFunction.php';
                 $fetchParking = fetchParking(); 
 
                 foreach ($fetchParking as $parkingData): 
-                    // Calculate duration if time_out is set
-                    $duration = '';
-                    if ($parkingData['time_out']) {
-                        $start_time = new DateTime($parkingData['time_in']);
-                        $end_time = new DateTime($parkingData['time_out']);
-                        $interval = $start_time->diff($end_time);
-                        $duration = $interval->format('%H:%I:%S');
-                    }
+                  if ($parkingData['status'] !== 'Available'): 
                 ?>      
                 <tr>
                     <td><?php echo htmlspecialchars($parkingData['slot_id']); ?></td>
@@ -338,12 +344,31 @@
                     <td><?php echo htmlspecialchars($parkingData['vehicle_type']); ?></td>
                     <td><div class="<?php echo htmlspecialchars($parkingData['ClassADD']); ?>"><span class="status-dot"></span><?php echo htmlspecialchars($parkingData['status']); ?></div></td>
                     <td><?php echo htmlspecialchars($parkingData['time_in']); ?></td>
-                    <td><?php echo htmlspecialchars($parkingData['time_out']); ?></td>
-                  <!-- Button trigger modal -->
+                    <td><div class="pending"><span class="pending-dot"></span>Pending</div></td>
                    <td>
-                    <button>
-                    <i class="fa-solid fa-check"></i>
-                    </button>
+
+                                                     <!-- Done Button -->
+                                      <div class="actionContainer">
+                                      <button
+                                      id="check_outBtn"
+                                      type="button"
+                                      class="btn btn-primary btn-md"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#checkoutModal"
+                                      data-slot-id="<?php echo htmlspecialchars($parkingData['slot_id']); ?>"
+                                      data-status="<?php echo htmlspecialchars($parkingData['status']); ?>"
+                                      data-license-plate="<?php echo htmlspecialchars($parkingData['license_plate']); ?>"
+                                      data-user-type="<?php echo htmlspecialchars($parkingData['user_type']); ?>"
+                                      data-vehicle-type="<?php echo htmlspecialchars($parkingData['vehicle_type']); ?>"
+                                      data-time-in="<?php echo htmlspecialchars($parkingData['time_in']); ?>"
+                                      data-time-out="<?php echo htmlspecialchars($parkingData['time_out']); ?>"
+                                      data-duration="<?php echo htmlspecialchars($parkingData['duration']); ?>"
+                                      data-fee="<?php echo htmlspecialchars($parkingData['fee']); ?>"
+                                    >
+                                      <i class="fa-solid fa-check"></i>
+                                    </button>
+                                                        
+                                                    <!-- Edit Button -->
                                         <button
                                             id="editBtn"
                                             type="button"
@@ -355,86 +380,283 @@
                                             data-user-type="<?php echo htmlspecialchars($parkingData['user_type']); ?>"
                                             data-vehicle-type="<?php echo htmlspecialchars($parkingData['vehicle_type']); ?>"
                                             data-status="<?php echo htmlspecialchars($parkingData['status']); ?>"
-                                            data-timein = "<?php echo htmlspecialchars($parkingData['time_in']); ?>"
-                                            data-timeout="<?php echo htmlspecialchars($parkingData['time_out']); ?>"
-                                        >
-                                            Edit
+                                          >
+                                          <i class="fa-solid fa-pencil"></i>
                                         </button>
-                    <button>
-                    <i class="fa-solid fa-trash"></i>
-                    </button>
-                      
-                      
-                      <!-- The Modal -->
-                      <div
-  class="modal fade"
-  id="modalIdEdit"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="modalTitleId"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalTitleId">Edit Slot</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <form action="../php/parkingExecution.php" id="insertForm" method="POST">
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="slot_id" class="form-label">Slot ID</label>
-              <input type="text" class="form-control" id="slot_id" name="slot_id" placeholder="Slot ID" readonly>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="status" class="form-label">Status</label>
-              <select class="form-select" id="status" name="status" required>
-                <option value="" disabled selected>Choose Status</option>
-                <option value="Available">Available</option>
-                <option value="Occupied">Occupied</option>
-                <option value="Reserved">Reserved</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="userType" class="form-label">User Type</label>
-              <select class="form-select" id="userType" name="user_type" required>
-                <option value="" disabled selected>Choose User Type</option>
-                <option value="VIP">VIP</option>
-                <option value="Regular">Regular</option>
-                <option value="Visitor">Visitor</option>
-              </select>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="vehicleType" class="form-label">Vehicle Type</label>
-              <select class="form-select" id="vehicleType" name="vehicle_type" required>
-                <option value="" disabled selected>Choose Vehicle Type</option>
-                <option value="Car">Car</option>
-                <option value="Motorcycle">Motorcycle</option>
-                <option value="SUV">SUV</option>
-                <option value="Truck">Truck</option>
-                <option value="Van">Van</option>
-                <option value="Pickup Truck">Pickup Truck</option>
-                <option value="Minivan">Minivan</option>
-              </select>
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-md-6 mb-3 d-flex justify-content-center">
-              <div class="form-group">
-                <label for="licensePlate" class="form-label">License Plate Number</label>
-                <input type="text" class="form-control" id="licensePlate" name="license_plate" placeholder="Enter License Plate No." required>
+
+                                                    <!-- Delete Slot Button -->
+                                        <button
+                                            onclick="confirmDelete(<?php echo htmlspecialchars($parkingData['slot_id']); ?>)" 
+                                            id="deleteBtn"
+                                          >
+                                          <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                        </div>
+                                        </td>
+                                      </tr>
+                                    <?php 
+                                    endif;
+                                    endforeach; 
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                 </div>
               </div>
-            </div>
-          </div>
-                              
+           </div>
+      </section>
+
+                                                           <!-- Check-Out Modal --> 
+                                      <div
+                                        class="modal fade"
+                                        id="checkoutModal"
+                                        tabindex="-1"
+                                        role="dialog"
+                                        aria-labelledby="checkoutModalTitle"
+                                        aria-hidden="true"
+                                      >
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="checkoutModalTitle">Check Out</h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form action="../php/parkingExecution.php" id="doneForm" method="POST">
+                                                <div class="mb-3">
+                                                  <label for="done_slot_id" class="form-label">Slot ID</label>
+                                                  <div class="custom-input-group">
+                                                  <span class="custom-input-group-text"><i class="fas fa-hashtag"></i></span>
+                                                  <input type="text" class="form-control" id="done_slot_id" name="slot_id" readonly>
+                                                  </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="done_license_plate" class="form-label">License Plate</label>
+                                                  <div class="custom-input-group">
+                                                  <span class="custom-input-group-text"><i class="fas fa-id-card"></i></span>
+                                                  <input type="text" class="form-control" id="done_license_plate" name="license_plate" readonly>
+                                                  </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="done_status" class="form-label">Status</label>
+                                                  <div class="custom-input-group">
+                                                  <span class="custom-input-group-text"><i class="fas fa-info-circle"></i></span>
+                                                  <input type="text" class="form-control" id="done_status" name="status" readonly>
+                                                  </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="done_user_type" class="form-label">User Type</label>
+                                                  <div class="custom-input-group">
+                                                  <span class="custom-input-group-text"><i class="fas fa-user-tag"></i></span>
+                                                  <input type="text" class="form-control" id="done_user_type" name="user_type" readonly>
+                                                  </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="done_vehicle_type" class="form-label">Vehicle Type</label>
+                                                  <div class="custom-input-group">
+                                                  <span class="custom-input-group-text"><i class="fas fa-car"></i></span>
+                                                  <input type="text" class="form-control" id="done_vehicle_type" name="vehicle_type" readonly>
+                                                  </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="done_time_in" class="form-label">Time In</label>
+                                                  <div class="custom-input-group">
+                                                  <span class="custom-input-group-text"><i class="fas fa-sign-in-alt"></i></span>
+                                                  <input type="text" class="form-control" id="done_time_in" name="time_in" readonly>
+                                                  </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="done_time_out" class="form-label">Time Out</label>
+                                                  <div class="custom-input-group">
+                                                  <span class="custom-input-group-text"><i class="fas fa-sign-out-alt"></i></span>
+                                                  <input type="text" class="form-control" id="done_time_out" name="time_out" readonly>
+                                                  </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="done_duration" class="form-label">Duration</label>
+                                                  <div class="custom-input-group">
+                                                  <span class="custom-input-group-text"><i class="fas fa-hourglass-half"></i></span>
+                                                  <input type="text" class="form-control" id="done_duration" name="duration" readonly>
+                                                  </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                  <label for="done_fee" class="form-label">Fee</label>
+                                                  <div class="custom-input-group">
+                                                  <span class="custom-input-group-text"><i class="fas fa-file-invoice-dollar"></i></i></span>
+                                                  <input type="text" class="form-control" id="done_fee" name="fee" readonly>
+                                                  </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                  <button type="submit" name="checkout_slot" class="btn btn-primary">Done</button>
+                                                </div>
+                                              </form>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                    
+                            <script>
+                            function populateModal(button) {
+                            const slotId = $(button).data('slot-id');
+                            const status = $(button).data('status');
+                            const userType = $(button).data('user-type');
+                            const licensePlate = $(button).data('license-plate');
+                            const vehicleType = $(button).data('vehicle-type');
+                            const timeIn = $(button).data('time-in');
+                            const timeOut = $(button).data('time-out');
+                            const duration = $(button).data('duration');
+                            const fee = $(button).data('fee');
+                            
+                            // Populate the form fields with the extracted data
+                            $('#checkoutModal input[name="slot_id"]').val(slotId);
+                            $('#checkoutModal input[name="status"]').val(status);
+                            $('#checkoutModal input[name="user_type"]').val(userType);
+                            $('#checkoutModal input[name="vehicle_type"]').val(vehicleType);
+                            $('#checkoutModal input[name="license_plate"]').val(licensePlate);
+                            $('#checkoutModal input[name="time_in"]').val(timeIn);
+                            
+                            // Set the fee rates for user types
+                            const feeRates = {
+                                Visitor: 20,  // 20/hr
+                                Regular: 10,  // 10/hr
+                                VIP: 5 // 5/hr
+                            };
+
+                            // Get the current local time
+                            const currentTime = new Date();
+
+                            // Format the local time as 'YYYY-MM-DD HH:mm:ss'
+                            const timeOutFormatted = currentTime.getFullYear() + '-' +
+                                String(currentTime.getMonth() + 1).padStart(2, '0') + '-' +
+                                String(currentTime.getDate()).padStart(2, '0') + ' ' +
+                                String(currentTime.getHours()).padStart(2, '0') + ':' +
+                                String(currentTime.getMinutes()).padStart(2, '0') + ':' +
+                                String(currentTime.getSeconds()).padStart(2, '0');
+
+                            $('#checkoutModal input[name="time_out"]').val(timeOutFormatted);
+
+                            // Ensure timeIn is a valid Date object
+                            const timeInDate = new Date(timeIn);
+                            if (isNaN(timeInDate.getTime())) {
+                                console.error('Invalid timeIn value:', timeIn);
+                            } else {
+
+                                // Calculate the duration (in milliseconds)
+                                const durationMs = currentTime - timeInDate;
+
+                                // Convert milliseconds to hours (fractional hours allowed)
+                                const durationHrs = durationMs / (1000 * 60 * 60);
+
+                                // Ensure a minimum of 1 hour is charged
+                                const chargeableDurationHrs = Math.max(1, Math.ceil(durationHrs));
+
+                                // Format the actual duration as 'HH:mm:ss'
+                                const durationSecs = Math.floor(durationMs / 1000);  
+                                const durationMins = Math.floor((durationSecs % 3600) / 60);
+                                const durationSecsRem = durationSecs % 60;
+                                const formattedDuration = 
+                                    String(Math.floor(durationHrs)).padStart(2, '0') + ':' +
+                                    String(durationMins).padStart(2, '0') + ':' +
+                                    String(durationSecsRem).padStart(2, '0');
+
+                                console.log('Formatted Duration:', formattedDuration);
+                                $('#checkoutModal input[name="duration"]').val(formattedDuration);
+
+                                // Calculate the fee based on user type and chargeable duration (at least 1 hour)
+                                const feePerHour = feeRates[userType] || 0;
+                                const totalFee = chargeableDurationHrs * feePerHour;
+                                console.log('Total Fee:', totalFee.toFixed(2));
+                                $('#checkoutModal input[name="fee"]').val(totalFee.toFixed(2));
+                            }
+                        }
+
+                        // Bind the function to the modal's show event
+                        $('#checkoutModal').on('show.bs.modal', function (event) {
+                            const button = $(event.relatedTarget); 
+                            populateModal(button); 
+                        });
+                            </script>
+
+                                
+                                                        <!-- Edit Modal -->
+                        <div
+                          class="modal fade"
+                          id="modalIdEdit"
+                          tabindex="-1"
+                          role="dialog"
+                          aria-labelledby="modalTitleId"
+                          aria-hidden="true"
+                        >
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="modalTitleId">Edit Slot</h5>
+                                      <button
+                                          type="button"
+                                          class="btn-close"
+                                          data-bs-dismiss="modal"
+                                          aria-label="Close"
+                                      ></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <form action="../php/parkingExecution.php" id="insertForm" method="POST">
+                                          <div class="row">
+                                              <div class="col-12 mb-3">
+                                                  <label for="slot_id" class="form-label">Slot ID</label>
+                                                  <div class="custom-input-group">
+                                                      <span class="custom-input-group-text"><i class="fas fa-hashtag"></i></span>
+                                                      <input type="text" class="form-control" id="slot_id" name="slot_id" placeholder="Slot ID" readonly>
+                                                  </div>
+                                              </div>
+                                              <div class="col-12 mb-3">
+                                                  <label for="status" class="form-label">Status</label>
+                                                  <div class="custom-input-group">
+                                                      <span class="custom-input-group-text"><i class="fas fa-info-circle"></i></span>
+                                                      <input type="text" class="form-control" id="status" name="status" placeholder="Status" readonly>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-12 mb-3">
+                                                  <label for="userType" class="form-label">User Type</label>
+                                                  <div class="custom-input-group">
+                                                      <span class="custom-input-group-text"><i class="fas fa-user-tag"></i></span>
+                                                      <select class="form-select" id="userType" name="user_type" >
+                                                          <option value="" disabled selected>Choose User Type</option>
+                                                          <option value="VIP">VIP</option>
+                                                          <option value="Regular">Regular</option>
+                                                          <option value="Visitor">Visitor</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                              <div class="col-12 mb-3">
+                                                  <label for="vehicleType" class="form-label">Vehicle Type</label>
+                                                  <div class="custom-input-group">
+                                                      <span class="custom-input-group-text"><i class="fas fa-car"></i></span>
+                                                      <select class="form-select" id="vehicleType" name="vehicle_type" >
+                                                          <option value="" disabled selected>Choose Vehicle Type</option>
+                                                          <option value="Car">Car</option>
+                                                          <option value="Motorcycle">Motorcycle</option>
+                                                          <option value="SUV">SUV</option>
+                                                          <option value="Truck">Truck</option>
+                                                          <option value="Van">Van</option>
+                                                          <option value="Pickup Truck">Pickup Truck</option>
+                                                          <option value="Minivan">Minivan</option>
+                                                      </select>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                  <div class="col-12 mb-3">
+                                      <label for="done_license_plate" class="form-label">License Plate</label>
+                                      <div class="custom-input-group">
+                                          <span class="custom-input-group-text"><i class="fas fa-id-card"></i></span>
+                                          <input type="text" class="form-control" id="licensePlate" name="license_plate" placeholder="Enter License Plate No." >
+                                      </div>
+                                  </div>
+                              </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" name="edit_slot" class="btn btn-primary">Edit</button>
@@ -458,7 +680,7 @@
                               
                               // Populate the form fields with the extracted data
                               $('#modalIdEdit input[name="slot_id"]').val(slotId);
-                              $('#modalIdEdit select[name="status"]').val(status);
+                              $('#modalIdEdit input[name="status"]').val(status);
                               $('#modalIdEdit select[name="user_type"]').val(userType);
                               $('#modalIdEdit select[name="vehicle_type"]').val(vehicleType);
                               $('#modalIdEdit input[name="license_plate"]').val(licensePlate);
@@ -471,30 +693,68 @@
                           });
                       });
                       </script>
-                    
-                    </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-        </div>
-          </div>
-        </div>
-      </section>
 
     </main>
 
-    
+                <!-- Event listener for the search input -->
+              <script>
+                        // Prevents the Search bar to be submittable 
+                      $('#search').on('keydown', function(event) {
+                      if (event.key === 'Enter') {
+                          event.preventDefault(); 
+                      }
+                  
+                    $('#search').on('input', function() {
+                      var searchQuery = $(this).val();
 
-    <?php include '../php/alerts.php' ?>
-    <!-- JS Script -->
-</script>
-    <script src="../script/modal.js"></script>
-    <script src="../script/sidebar.js"></script>
-    <script src="../script/darkmode.js"></script>
-    <script src="../script/highlighted.js"></script>
+                      $.ajax({
+                          url: '../php/slotSearch.php',
+                          type: 'GET',
+                          data: { search: searchQuery },
+                          success: function(data) {
+
+                              $('.parking-table-body-container tbody').html(data);
+                          },
+                          error: function(xhr, status, error) {
+                              console.error('Error:', error);
+                          }
+                      });
+                  });
+                });
+              </script>
+
+
+                <!-- Function to delete a slot -->
+                <script>
+                  function confirmDelete(slot_id) {
+                    Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: 'blue',
+                    cancelButtonColor: 'red',
+                    confirmButtonText: '<span style="color: #fff">Yes, delete it!</span>',
+                    cancelButtonText: '<span style="color: #fff">Cancel</span>'
+                    }).then((result) => {
+                       if (result.isConfirmed) {
+                // Redirect to the PHP script with the concernID as a GET parameter
+                window.location.href = "../php/Admin/slot_delete.php?slotDelete=" + slot_id;
+                        }
+                    });
+                }
+                </script>
+
+                                <!-- Alerts -->
+                        <?php include '../php/alerts.php' ?>
+
+                  <!-- Script -->
+        <script>
+          AOS.init();
+        </script>
+        <script src="../script/modal.js"></script>
+        <script src="../script/sidebar.js"></script>
+        <script src="../script/darkmode.js"></script>
+        <script src="../script/highlighted.js"></script>
   </body>
 </html>

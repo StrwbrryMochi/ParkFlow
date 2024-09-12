@@ -57,4 +57,3 @@ if (isset($_POST['checkout_slot'])) {
         checkoutSlot($slot_id, $license_plate, $user_type, $vehicle_type, $status, $time_in, $time_out, $duration, $fee);
     }
 
-

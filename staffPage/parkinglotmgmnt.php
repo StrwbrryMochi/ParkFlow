@@ -186,7 +186,7 @@
                     <hr class="profile-divider">
                     <div class="modalBtn">
                       <ul>
-                        <li><a href="#"><i class="fa-regular fa-user"></i><span>Profile</span></a></li>
+                        <li><a href="profile.php"><i class="fa-regular fa-user"></i><span>Profile</span></a></li>
                         <li><a href="#"><i class="fa-solid fa-gear"></i><span>Settings</span></a></li>
                         <li><a href="../php/logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Log Out</span></a></li>
                       </ul>
@@ -292,7 +292,7 @@
                 <label for="licensePlate" class="form-label">License Plate Number</label>
                 <div class="custom-input-group">
                 <span class="custom-input-group-text"><i class="fas fa-id-card"></i></span>
-                <input type="text" class="form-control" id="licensePlate" name="license_plate" placeholder="Enter License Plate No." required>
+                <input type="text" class="form-control" id="licensePlate" name="license_plate" placeholder="Enter License Plate No." autocomplete="off" required>
                 </div>
               </div>
             </div>

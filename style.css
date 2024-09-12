@@ -1358,7 +1358,8 @@ input[type="search"]:focus {
 }
 
 #check_outBtn,
-#editBtn {
+#editBtn,
+#deleteBtn {
   padding: 8px 14px;
   background-color: #0056b3;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
@@ -1366,7 +1367,8 @@ input[type="search"]:focus {
 }
 
 #check_outBtn:hover,
-#editBtn:hover {
+#editBtn:hover,
+#deleteBtn:hover {
   transform: scale(1.0875);
   background-color: #00356d;
 }
@@ -1444,6 +1446,8 @@ input[type="search"]:focus {
 .darkMode {
   background-color: #1e222e;
 }
+
+/* MyProfile */
 
 body,
 nav,
