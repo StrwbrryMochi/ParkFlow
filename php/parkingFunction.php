@@ -226,19 +226,7 @@ function getOccupiedSlots() {
     return $slots;
 }
 
-// Function to get reserved slots
-function getReservedSlots() {
-    global $connections;
-    $sql = "SELECT slot_id FROM parking_tbl WHERE status = 'Reserved'";
-    $result = mysqli_query($connections, $sql);
 
-    $slots = [];
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $slots[] = $row['slot_id'];
-        }
-    }
-    return $slots;
-}
+
 
 

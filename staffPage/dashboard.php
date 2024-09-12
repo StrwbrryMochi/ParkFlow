@@ -1,7 +1,8 @@
 <?php
 include '../php/connections.php';
 include '../php/fetchLoginData.php';
-include_once '../php/parkingFunction.php';
+include '../php/parkingFunction.php';
+include '../php/vipFunction.php';
 
 ?>
 
@@ -41,6 +42,7 @@ include_once '../php/parkingFunction.php';
                         <li><a href="dashboard.php"><i class="fa-solid fa-table"></i> <span>Dashboard</span></a></li>
                         <li><a href="reservations.html"><i class="fa-solid fa-book"></i> <span>Reservations</span></a></li>
                         <li><a href="parkinglotmgmnt.php"><i class="fa-solid fa-car"></i> <span>Parking Slot Management</span></a></li>
+                        <li><a href="vipslotmgmnt.php"><i class="fa-solid fa-star"></i> <span>VIP Slot Management</span></a></li>
                         <li><a href="reservations.html"><i class="fa-solid fa-clock-rotate-left"></i> <span>Activity Feed</span></a></li>
                         <li><a href="concerns.html"><i class="fa-solid fa-bullhorn"></i> <span>Concerns</span></a></li>
                     </ul>
@@ -196,7 +198,7 @@ include_once '../php/parkingFunction.php';
                   <?php  
                           $availableSlots = count(getAvailableSlots());
                           $occupiedSlots = count(getOccupiedSlots());
-                          $reservedSlots = count(getReservedSlots());
+                          $reservedVIPSlots = count(getReservedSlots());
                           $totalSlots = getTotalSlots();
                   ?>
                     <div class="status-card" id="total-slots-card">
@@ -231,7 +233,7 @@ include_once '../php/parkingFunction.php';
                             <i class="fa-solid fa-book"></i>
                         </div>
                         <div class="status-info">
-                            <span id="reserved-count"><?php echo htmlspecialchars($reservedSlots); ?></span>
+                            <span id="reserved-count"><?php echo htmlspecialchars($reservedVIPSlots); ?></span>
                             <p>Reserved</p>
                         </div>
                     </div>
