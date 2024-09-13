@@ -138,6 +138,12 @@ function editVIP($slot_id, $license_plate, $user_type, $vehicle_type, $status) {
         $connections->close();
         exit();
     }
+
+    if ($status === 'Reserved' && !empty($existing_time_in)) {
+        echo "<script>window.location.href='../staffPage/vipslotmgmnt.php?edit_slot_error=true';</script>";
+        $connections->close();
+        exit();
+        }
     
     if ($status === 'Occupied') {
 
