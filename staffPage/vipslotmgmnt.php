@@ -249,7 +249,7 @@
               <label for="status" class="form-label">Status</label>
               <div class="custom-input-group">
               <span class="custom-input-group-text"><i class="fas fa-info-circle"></i></span>
-              <select class="form-select" id="status" name="status" >
+              <select class="form-select" id="status" name="status" required>
                 <option value="" disabled selected>Choose Status</option>
                 <option value="Occupied">Occupied</option>
                 <option value="Reserved">Reserved</option>
@@ -620,7 +620,7 @@
                                       <label for="done_license_plate" class="form-label">License Plate</label>
                                       <div class="custom-input-group">
                                           <span class="custom-input-group-text"><i class="fas fa-id-card"></i></span>
-                                          <input type="text" class="form-control" id="licensePlate" name="license_plate" placeholder="Enter License Plate No." >
+                                          <input type="text" class="form-control" id="licensePlate" name="license_plate" placeholder="Enter License Plate No." autocomplete="off">
                                       </div>
                                   </div>
                               </div>
