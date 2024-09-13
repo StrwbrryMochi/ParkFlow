@@ -94,6 +94,17 @@ if (isset($_GET['slot_deleted']) && $_GET['slot_deleted'] == 'true') {
     </script>";
 }
 
+if (isset($_GET['checkout_error']) && $_GET['checkout_error'] == 'true') {
+    echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Invalid Data',
+            timer: 2000
+        });
+    </script>";
+}
+
 
 // Toaster Alerts
 if (isset($_GET['add_slot']) && $_GET['add_slot'] == 'true') {

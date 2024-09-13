@@ -193,8 +193,34 @@ function editVIP($slot_id, $license_plate, $user_type, $vehicle_type, $status) {
 function vipcheckoutSlot($slot_id, $license_plate, $user_type, $vehicle_type, $status, $time_in, $time_out, $duration) {
     global $connections;
 
+    $checksql = "SELECT time_in FROM vip_tbl WHERE slot_id = ?";
 
-    $updateSql = "UPDATE vip_tbl SET time_in = ?, time_out = ?, duration = ? WHERE slot_id = ?";
+    // To check if time_in is already set in the slot
+    if ($stmt = $connections->prepare($checksql)) {
+        $stmt->bind_param("i", $slot_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $existing_time_in = $row['time_in'];
+        } else {
+            echo "Error: Slot not found.";
+            $stmt->close();
+            $connections->close();
+            exit();
+        }
+        $stmt->close();
+    } else {
+        echo "Error: ". $connections->error;
+        $connections->close();
+        exit();
+    }
+    
+    if (empty($existing_time_in)) {
+        echo "<script>window.location.href='../staffPage/vipslotmgmnt.php?checkout_error=true';</script>";
+    } else {
+        $updateSql = "UPDATE vip_tbl SET time_in = ?, time_out = ?, duration = ? WHERE slot_id = ?";
 
     // SQL query to update the aforementioned tables for check out
          if ($stmt = $connections->prepare($updateSql)) {
@@ -238,6 +264,7 @@ function vipcheckoutSlot($slot_id, $license_plate, $user_type, $vehicle_type, $s
 } else {
     echo "Error preparing query: " . $connections->error . "<br>";
 }
+    }
     $connections->close();
 }
 
