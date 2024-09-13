@@ -105,6 +105,17 @@ if (isset($_GET['checkout_error']) && $_GET['checkout_error'] == 'true') {
     </script>";
 }
 
+if (isset($_GET['edit_slot_error']) && $_GET['edit_slot_error'] == 'true') {
+    echo "<script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Slot Status is already set to Occupied',
+            timer: 2000
+        });
+    </script>";
+}
+
 
 // Toaster Alerts
 if (isset($_GET['add_slot']) && $_GET['add_slot'] == 'true') {
