@@ -249,11 +249,7 @@
               <label for="status" class="form-label">Status</label>
               <div class="custom-input-group">
               <span class="custom-input-group-text"><i class="fas fa-info-circle"></i></span>
-              <select class="form-select" id="status" name="status" >
-                <option value="" disabled selected>Choose Status</option>
-                <option value="Occupied">Occupied</option>
-                <option value="Reserved">Reserved</option>
-              </select>
+              <input type="text" class="form-control" id="status" name="status" value="Occupied" readonly>
               </div>
             </div>
           </div>
@@ -334,7 +330,7 @@
                 $fetchParking = fetchParking(); 
 
                 foreach ($fetchParking as $parkingData): 
-                  if ($parkingData['status'] !== 'Available'):
+                  if ($parkingData['status'] === 'Occupied'):
                 ?>      
                 <tr>
                     <td><?php echo htmlspecialchars($parkingData['slot_id']); ?></td>
