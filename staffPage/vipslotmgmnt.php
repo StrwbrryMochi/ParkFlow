@@ -582,8 +582,8 @@
                                                   <label for="status" class="form-label">Status</label>
                                                   <div class="custom-input-group">
                                                       <span class="custom-input-group-text"><i class="fas fa-info-circle"></i></span>
-                                                      <select class="form-select" id="status" name="status" >
-                                                    <option value="" disabled selected required>Choose Status</option>
+                                                      <select class="form-select" id="status" name="status" required>
+                                                    <option value="" disabled selected >Choose Status</option>
                                                     <option value="Occupied">Occupied</option>
                                                     <option value="Reserved">Reserved</option>
                                                     </select>
@@ -602,7 +602,7 @@
                                                   <label for="vehicleType" class="form-label">Vehicle Type</label>
                                                   <div class="custom-input-group">
                                                       <span class="custom-input-group-text"><i class="fas fa-car"></i></span>
-                                                      <select class="form-select" id="vehicleType" name="vehicle_type" >
+                                                      <select class="form-select" id="vehicleType" name="vehicle_type" required>
                                                           <option value="" disabled selected>Choose Vehicle Type</option>
                                                           <option value="Car">Car</option>
                                                           <option value="Motorcycle">Motorcycle</option>

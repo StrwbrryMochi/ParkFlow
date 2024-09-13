@@ -113,6 +113,7 @@ function editVIP($slot_id, $license_plate, $user_type, $vehicle_type, $status) {
     // Set Timezone and get the current time
     date_default_timezone_set('Asia/Manila'); 
     $current_time = date('Y-m-d H:i:s');
+    
 
     $checksql = "SELECT time_in FROM vip_tbl WHERE slot_id = ?";
 
