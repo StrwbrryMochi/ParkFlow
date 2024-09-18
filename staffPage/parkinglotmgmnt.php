@@ -610,7 +610,6 @@
                                                       <span class="custom-input-group-text"><i class="fas fa-user-tag"></i></span>
                                                       <select class="form-select" id="userType" name="user_type" >
                                                           <option value="" disabled selected>Choose User Type</option>
-                                                          <option value="VIP">VIP</option>
                                                           <option value="Regular">Regular</option>
                                                           <option value="Visitor">Visitor</option>
                                                       </select>

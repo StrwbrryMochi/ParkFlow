@@ -675,7 +675,7 @@
                       var searchQuery = $(this).val();
 
                       $.ajax({
-                          url: '../php/slotSearch.php',
+                          url: '../php/vipSearch.php',
                           type: 'GET',
                           data: { search: searchQuery },
                           success: function(data) {
