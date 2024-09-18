@@ -335,6 +335,35 @@ function getReservedSlots() {
     return $slots;
 }
 
+function searchVIP($search = '') {
+    global $connections;
+
+    $search = mysqli_real_escape_string($connections, $search);
+
+    // SQL Query for Search 
+    $sql = "SELECT * FROM vip_tbl 
+            WHERE slot_id LIKE '%$search%' 
+            OR user_type LIKE '%$search%' 
+            OR status LIKE '%$search%'";
+
+    $result = mysqli_query($connections, $sql);
+
+    $fetchVIP = [];
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            // Add specific class names based on status
+            if ($row['status'] == 'Occupied') {
+                $row['ClassADD'] = 'status-item occupied';
+            } elseif ($row['status'] == 'Reserved') {
+                $row['ClassADD'] = 'status-item reserved';
+            } else {
+                $row['ClassADD'] = 'status-item available';
+            }
+            $fetchVIP[] = $row;
+        }
+    }
+    return $fetchVIP;
+}
 
 
 
