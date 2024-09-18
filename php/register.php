@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registerFirst'])) {
 
     // Check if email is valid
     if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
-        echo "<script>alert('Invalid email format'); window.location.href='../register_photo.php?register_error=true';</script>";
+        echo "<script>alert('Invalid email format'); window.location.href='../loginPage.php?register_error=true';</script>";
         exit;
     }
 
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['registerFirst'])) {
         $_SESSION['Email'] = $Email;
         echo "<script>window.location.href='../register_photo.php?register_success=true';</script>";
     } else {
-        echo "<script>alert('Error: " . $stmt->error . "'); window.location.href='../register_photo.php?register_error=true';</script>";
+        echo "<script>alert('Error: " . $stmt->error . "'); window.location.href='../loginPage.php?register_error=true';</script>";
     }
 
     // Close statement and connection
