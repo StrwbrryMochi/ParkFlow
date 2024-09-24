@@ -1,7 +1,7 @@
 <?php
   
   include '../php/connections.php';
-  include '../php/fetchLoginData.php';
+  include '../php/fetchStaffLoginData.php';
 
 ?>
 

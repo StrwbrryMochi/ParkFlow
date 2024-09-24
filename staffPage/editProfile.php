@@ -1,6 +1,6 @@
 <?php
 include '../php/connections.php';
-include '../php/fetchLoginData.php';
+include '../php/fetchStaffLoginData.php';
 include_once '../php/parkingFunction.php';
 
 ?>
