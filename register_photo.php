@@ -7,71 +7,72 @@ session_start();
 if (isset($_SESSION['Email'])) { 
     $Email = $_SESSION['Email'];
 
-    $sqlfetch = "SELECT userID, Name FROM usertbl WHERE Email = '$Email'";
+    $sqlfetch = "SELECT * FROM usertbl WHERE Email = '$Email'";
     $result = mysqli_query($connections, $sqlfetch);
 
     if ($connections && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $userID = $row['userID'];
-        $Name = $row['Name'];
     }
 } else {
     echo "You are not in session";
     exit;
 }
 
-// Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
-    if (isset($_POST['registerSecond'])) {
-        $targetDirectory = "uploads/";  
-        $file = $_FILES['Photo'];
-        $originalFileName = basename($file['name']);  
-        $imageFileType = strtolower(pathinfo($originalFileName, PATHINFO_EXTENSION));  
-        $Photo = uniqid('User_', true) . '.' . $imageFileType;
-        $targetFilePath = $targetDirectory . $Photo;  
-        $uploadOk = 1;  
+  if (isset($_POST['registerPhoto']) && isset($_POST['photoDataUrl'])) {
+      // Extract base64 string from the hidden input
+      $photoDataUrl = $_POST['photoDataUrl'];
 
-        // Check if the file is a valid image
-        $check = getimagesize($file['tmp_name']);
-        if ($check === false) {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
+      // Check if the base64 string is valid
+      if (empty($photoDataUrl)) {
+          echo "No image data received.";
+          exit;
+      }
 
-        // Check file size (limit to 5MB)
-        if ($file['size'] > 5000000) {
-            echo "Sorry, your file is too large.";
-            $uploadOk = 0;
-        }
+      // Extract the base64 encoded image data (after the "base64," part)
+      list($type, $data) = explode(';', $photoDataUrl);
+      list(, $data) = explode(',', $data);
+      $decodedData = base64_decode($data);
 
-        // Allow specific file formats
-        $allowedFormats = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-        if (!in_array($imageFileType, $allowedFormats)) {
-            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-            $uploadOk = 0;
-        }
+      // Determine the file extension from the MIME type
+      $mimeType = explode(':', $type)[1];
+      $imageFileType = '';
+      if ($mimeType == 'image/jpeg') {
+          $imageFileType = 'jpg';
+      } elseif ($mimeType == 'image/png') {
+          $imageFileType = 'png';
+      } elseif ($mimeType == 'image/gif') {
+          $imageFileType = 'gif';
+      } elseif ($mimeType == 'image/webp') {
+          $imageFileType = 'webp';
+      } else {
+          echo "Unsupported image type.";
+          exit;
+      }
 
-        // Check if the file can be uploaded
-        if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
-        } else {
-            // Upload the file and update the database
-            if (move_uploaded_file($file['tmp_name'], $targetFilePath)) {
-                $sql = "UPDATE usertbl SET Photo = '$Photo' WHERE userID = $userID";
+      // Define target directory and generate a unique file name
+      $targetDirectory = "uploads/";
+      $Photo = uniqid('User_', true) . '.' . $imageFileType;
+      $targetFilePath = $targetDirectory . $Photo;
 
-                if ($connections->query($sql) === TRUE) {
-                    echo "<script>window.location.href='staffPage/dashboard.php?register_photo_success=true';</script>";
-                } else {
-                    echo "Error: " . $connections->error;
-                }
-            } else {
-                echo "Sorry, there was an error uploading your file.";
-            }
-        }
-    }
+      // Save the decoded image data to a file
+      if (file_put_contents($targetFilePath, $decodedData)) {
+          // Update the database with the file name
+          $updateSql = "UPDATE usertbl SET Photo = '$Photo' WHERE userID = $userID";
+
+          if ($connections->query($updateSql) === TRUE) {
+              echo "<script>window.location.href='staffPage/dashboard.php?register_photo_success=true';</script>";
+          } else {
+              echo "Error: " . $connections->error;
+          }
+      } else {
+          echo "Sorry, there was an error saving your file.";
+      }
+  } else {
+      echo "No photo data received.";
+  }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -79,57 +80,120 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register | BCP</title>
+    <title>Choose Photo</title>
     <link rel="stylesheet" href="css/sweetalert.css">
     <script src="js/sweetalert.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/logo.png" type="image/x-icon">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="auth.css">
+    <link rel="icon" href="img/logo.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="stylesheet" href="css/filepond.css">
+    <script src="js/filepond.js"></script>
 </head>
 <body>
-<div class="login-page">
-<div class="login-container" id="login-container">
-      <div style="opacity: 1;" class="form-container sign-up">
-        <form action="register_photo.php" method="POST" enctype="multipart/form-data"> 
-            <h1>Choose Photo</h1>
-            <div class="file-upload-wrapper">
-    <div class="file-icon" id="file-icon">
-        <img id="file-preview" src="" alt="Preview" style="display: none;">
+<main>
+    <header>
+  <nav class="navbar">
+    <div class="logo-section">
+      <a href="#" class="logo" id="logo">Park<span>Flow</span></a>
     </div>
-    <div class="file-upload-container" id="file-upload-container">
-        <label for="file-upload" class="custom-file-upload">
-            Choose File
-        </label>
-        <span id="file-chosen">No file chosen</span>
-        <input name="Photo" id="file-upload" type="file" accept="image/*"/>
+    <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="auth-buttons">
+      <a href="loginPage.php" class="sign-in">Sign In</a>
+      <a href="register.php" class="sign-up">Sign Up</a>
     </div>
-</div>
+  </nav>
+</header>
 
-            <button name="registerSecond" class="button" type="submit">Submit</button>
-        </form>
-    </div>
-    
-   
-      <div class="toggle-container">
-        <div class="toggle">
-            <div class="toggle-panel toggle-right">
-                <img src="img/logo.png" alt="">
-                <h3>Already have an Account?</h3>
-                <a href="loginPage.php">
-                <button class="hidden" >Sign In</button>
-                </a>
+<section class="register-details-container-photo">
+  <div class="register-details-form-photo">
+    <h2>Choose Photo</h2>
+    <form action="register_photo.php" method="POST" enctype="multipart/form-data">
+      
+      <div class="form-row">
+        <div class="form-group">
+          <input type="hidden" id="photoDataUrl" name="photoDataUrl">
+          <input type="file" id="photo" name="Photo" class="custom-file-input" accept="image/*" required>
+        </div>
+        <div class="details-btn">
+            <button type="submit" name="registerPhoto" class="button" id="detailsBtn">Submit</button>
         </div>
       </div>
+    </form>
+  </div>
+    <div class="details-photo-wrapper">
+      <div class="details-photo"></div>
     </div>
-    </div>
-    <script src="script/registerphoto.js"></script>
+</section>
+    </main>
+
+    <script>
+    window.addEventListener('load', function() {
+    document.querySelector('.register-details-form-photo').classList.add('visible');
+    });
+    </script>
+
+    <script>
+        window.addEventListener('load', function() {
+            document.querySelector('.details-photo-wrapper').classList.add('show');
+        })
+    </script>
+
+<script>
+    const inputElement = document.querySelector('#photo');
+FilePond.create(inputElement, {
+    credits: false,
+    maxFiles: 1
+});
+
+// Find the FilePond instance for handling the image preview logic
+const pond = FilePond.find(inputElement);
+
+// Get the hidden input to store the image's Data URL
+const hiddenInput = document.querySelector('#photoDataUrl');
+
+pond.on('addfile', (error, file) => {
+    if (error) {
+        console.log('Error', error);
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const detailsPhoto = document.querySelector('.details-photo');
+        detailsPhoto.style.backgroundImage = `url(${e.target.result})`;
+        detailsPhoto.classList.add('visible');
+
+        // Store the Data URL in the hidden input
+        hiddenInput.value = e.target.result;
+    };
+    reader.readAsDataURL(file.file);
+});
+
+// Listen for the removefile event to clear the image preview and hidden input
+pond.on('removefile', (error, file) => {
+    if (error) {
+        console.log('Error', error);
+        return;
+    }
+
+    const detailsPhoto = document.querySelector('.details-photo');
+    detailsPhoto.classList.remove('visible');
+
+    // Clear the background image after a brief delay for the fade-out effect
+    setTimeout(() => {
+        detailsPhoto.style.backgroundImage = '';
+    }, 500);
+
+    // Clear the hidden input value
+    hiddenInput.value = '';
+});
+</script>
+   
 
     <?php include 'php/alerts.php'?>
 </body>

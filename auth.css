@@ -1,0 +1,1133 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Inter", sans-serif;
+}
+
+/* *Global Elements* */
+:root {
+  --body: #272b3f;
+  --nav-color: #3b5d8f;
+  --nav-text: #fff;
+  --logo-text: #fff;
+  --logo-span: #fca69e;
+  --auth-primary: #6688cc;
+  --auth-primarytext: #fff;
+  --auth-secondary: #ff6f61;
+  --auth-secondarytext: #fff;
+  --primary: #ff6f61;
+  --neutral: #272b3f;
+  --neutral-hover: #495177;
+  --primary-hover: #fca69e;
+}
+body {
+  background-color: var(--body);
+  background-image: url(img/waves.svg);
+}
+
+#logo {
+  background-color: #ff6f61;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+nav.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 4px 30px;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.logo-section {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.logo-section .logo {
+  background: url(img/logobg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--logo-text);
+  padding: 8px 30px;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgb(39, 43, 63) 0px -1px 0px inset;
+  font-size: 1.275rem;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.logo-section .logo span {
+  color: var(--logo-span);
+}
+
+.logo-section .logo:hover {
+  background-color: #c4dbf6;
+  transition: 0.6s;
+}
+
+ul.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+ul.nav-links li a {
+  text-decoration: none;
+  color: var(--nav-text);
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px;
+  transition: color 0.3s ease;
+}
+
+ul.nav-links li a:hover {
+  color: var(--primary);
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.auth-buttons a {
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.auth-buttons .sign-in {
+  color: white;
+}
+
+.auth-buttons .sign-in:hover {
+  color: #c05668;
+  transition: 0.3s ease;
+}
+
+.auth-buttons .sign-up {
+  background-color: var(--auth-secondary);
+  color: var(--auth-secondarytext);
+}
+
+.auth-buttons .sign-up:hover {
+  color: var(--primary-hover);
+  background-color: var(--neutral-hover);
+}
+
+/* *Login Container* */
+.login-container,
+.register-container {
+  background-color: transparent;
+  position: relative;
+  height: 91vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* *Login Form Container* */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 250px;
+  width: 100%;
+  max-width: 600px;
+  height: 500px;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 10px 0 0 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  transform: scale(0.8);
+}
+
+.login-form.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.login-form h2,
+.register-form h2 {
+  align-items: center;
+  font-size: 1.625rem;
+  margin-bottom: 60px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 250px;
+  width: 100%;
+  max-width: 600px;
+  height: 500px;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 3;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.register-form.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.input-container {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.email-field,
+.password-field {
+  position: relative;
+  width: 100;
+  margin-bottom: 1rem;
+}
+
+.password-field {
+  margin-right: 0; /* Remove margin from the last field */
+}
+
+.email-field input,
+.password-field input {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: transparent;
+  outline: none;
+}
+
+/* Label inside the input initially */
+.email-field label,
+.password-field label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 16px;
+  transition: 0.3s ease;
+  pointer-events: none;
+  background-color: white;
+  padding: 0 5px;
+}
+
+/* Placeholder technique to have label inside */
+input::placeholder {
+  opacity: 0;
+}
+
+/* Move label when input is focused or filled */
+.email-field input:focus + label,
+.email-field input:not(:placeholder-shown) + label,
+.password-field input:focus + label,
+.password-field input:not(:placeholder-shown) + label {
+  top: 1px;
+  left: 10px;
+  font-size: 12px;
+  background-color: white;
+  padding: 0 5px;
+  color: var(--auth-primary);
+}
+
+/* Sign In Button */
+.button {
+  background-color: var(--neutral);
+  color: #fff;
+  border: none;
+  padding: 0.8rem;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #495177;
+}
+
+/* Forgot Password Link */
+.redirect {
+  margin-top: 1rem;
+}
+
+.redirect a {
+  color: var(--auth-primary);
+  text-decoration: none;
+}
+
+.redirect a:hover {
+  text-decoration: underline;
+}
+
+/* *Login Content Container* */
+.login-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(img/containerimg.svg);
+  background-position: center;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 250px;
+  width: 100%;
+  max-width: 400px;
+  height: 500px;
+  padding: 2rem;
+  border-radius: 0px 10px 10px 0;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.login-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.login-img-container.show {
+  transform: translateX(0);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+
+.register-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(img/regimg.svg);
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 250px;
+  width: 100%;
+  max-width: 400px;
+  height: 500px;
+  padding: 2rem;
+  border-radius: 10px 0 0 10px;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.register-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.register-img-container.show {
+  transform: translateX(0);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+
+svg {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+/* *Register Details Container* */
+.register-details-container {
+  background-color: transparent;
+  position: relative;
+  height: 91vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* *Register Details Form* */
+.register-details-form h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+/* *Form layout* */
+.register-details-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 250px;
+  width: 100%;
+  height: 500px;
+  max-width: 550px;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 10px 0 0 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+  transition: opacity 0.3s, transform 0.3s;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.register-details-form.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.register-details-container-second {
+  background-color: transparent;
+  position: relative;
+  height: 91vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* *Register Details Form* */
+.register-details-form-second h2 {
+  color: var(--body);
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+/* *Form layout* */
+.register-details-form-second {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 250px;
+  width: 100%;
+  height: 500px;
+  max-width: 550px;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+  transition: opacity 0.3s, transform 0.3s;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.register-details-form-second.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.register-details-container-second {
+  background-color: transparent;
+  position: relative;
+  height: 91vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* *Register Details Form* */
+.register-details-form-second h2 {
+  color: var(--body);
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+/* *Form layout* */
+.register-details-form-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 250px;
+  width: 100%;
+  height: 500px;
+  max-width: 550px;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+  transition: opacity 0.3s, transform 0.3s;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.register-details-form-photo.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.register-details-container-photo {
+  background-color: transparent;
+  position: relative;
+  height: 91vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* *Register Details Form* */
+.register-details-form-photo h2 {
+  color: var(--body);
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 80px;
+}
+
+/* *Form layout* */
+.register-details-form-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 250px;
+  width: 100%;
+  height: 500px;
+  max-width: 550px;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 10px 0 0 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+}
+
+form {
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  gap: 4%;
+}
+
+.form-row .form-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.register-details-container-photo .form-group {
+  margin-bottom: 4rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: transparent;
+  outline: none;
+}
+
+/* *Label inside the input initially* */
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 16px;
+  transition: 0.3s ease;
+  pointer-events: none;
+  background-color: white;
+  padding: 0 5px;
+}
+
+/* *Placeholder technique to have label inside* */
+input::placeholder {
+  opacity: 0;
+}
+
+/* *Move label when input is focused or filled* */
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group select:focus + label,
+.form-group select:not([value=""]) + label {
+  top: 1px;
+  left: 10px;
+  font-size: 12px;
+  background-color: white;
+  padding: 0 5px;
+  color: var(--auth-primary);
+}
+
+/* *Outline effect on focus* */
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--auth-primary);
+  outline: none;
+}
+
+.details-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#detailsBtn {
+  background-color: var(--neutral);
+  color: #fff;
+  border: none;
+  padding: 0.8rem;
+  width: 60%;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+#detailsBtn:hover {
+  background-color: var(--auth-secondary);
+}
+
+.details-svg-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(img/regimg.svg);
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 250px;
+  width: 100%;
+  max-width: 400px;
+  height: 500px;
+  padding: 2rem;
+  border-radius: 0 10px 10px 0;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.details-svg-first {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.details-svg-wrapper.show {
+  transform: translateX(0);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+
+.details-svg-wrapper-second {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(img/regimg.svg);
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 250px;
+  width: 100%;
+  max-width: 400px;
+  height: 500px;
+  padding: 2rem;
+  border-radius: 10px 0 0 10px;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.details-svg-second {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.details-svg-wrapper-second.show {
+  transform: translateX(0);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+
+.details-photo-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(img/regimg.svg);
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 250px;
+  width: 100%;
+  max-width: 400px;
+  height: 500px;
+  padding: 2rem;
+  border-radius: 0 10px 10px 0;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.details-photo-wrapper.show {
+  transform: translateX(0%);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+
+.details-photo {
+  background-color: #f1f1f1;
+  background-size: cover;
+  background-position: center;
+  display: block;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 2px solid var(--body);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.details-photo.visible {
+  opacity: 1;
+}
+
+.custom-file-input {
+  appearance: none;
+  width: 100%;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-file-input::file-selector-button {
+  display: none;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  display: none;
+}
+
+/* Target the FilePond root to remove border, padding, and set a custom size */
+.filepond--root {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  padding: 38.2px;
+  width: 100%;
+  height: 100%;
+}
+
+/* Customize the drag-and-drop label */
+.filepond--drop-label {
+  font-size: 16px;
+  color: #333;
+  padding: 5px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+/* *Sign In SVG Animation* */
+svg#freepik_stories-parking:not(.animated) .animable {
+  opacity: 0;
+}
+svg#freepik_stories-parking.animated #freepik--Clouds--inject-63 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideLeft,
+    1.5s Infinite linear floating;
+  animation-delay: 0s, 1s;
+}
+svg#freepik_stories-parking.animated #freepik--Sun--inject-63 {
+  animation: 1.2s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideRight,
+    1.5s Infinite linear floating;
+  animation-delay: 0s, 1.2s;
+}
+svg#freepik_stories-parking.animated #freepik--Trees--inject-63 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideUp;
+  animation-delay: 0s;
+}
+svg#freepik_stories-parking.animated #freepik--Sidewalk--inject-63 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+  animation-delay: 0s;
+}
+svg#freepik_stories-parking.animated #freepik--Shadows--inject-63 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+  animation-delay: 0s;
+}
+svg#freepik_stories-parking.animated #freepik--car-2--inject-63 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+  animation-delay: 0s;
+}
+svg#freepik_stories-parking.animated #freepik--car-1--inject-63 {
+  animation: 0.7s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+  animation-delay: 0s;
+}
+svg#freepik_stories-parking.animated #freepik--Locator--inject-63 {
+  animation: 0.6s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown,
+    1.5s Infinite linear floating;
+  animation-delay: 0s, 0.6s;
+}
+svg#freepik_stories-parking.animated #freepik--Keys--inject-63 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+  animation-delay: 0s;
+}
+svg#freepik_stories-parking.animated #freepik--Cones--inject-63 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+  animation-delay: 0s;
+}
+svg#freepik_stories-parking.animated #freepik--Barrier--inject-63 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideRight;
+  animation-delay: 0s;
+}
+@keyframes slideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes floating {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: inherit;
+  }
+}
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* *Sign Up SVG Animation* */
+svg#freepik_stories-starman:not(.animated) .animable {
+  opacity: 0;
+}
+svg#freepik_stories-starman.animated #freepik--Space--inject-2 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) fadeIn;
+  animation-delay: 0s;
+}
+svg#freepik_stories-starman.animated #freepik--Planet--inject-2 {
+  animation: 1.3s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) zoomIn,
+    3s Infinite linear floating;
+  animation-delay: 0s, 1.3s;
+}
+svg#freepik_stories-starman.animated #freepik--Starman--inject-2 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) zoomIn,
+    1.5s Infinite linear floating;
+  animation-delay: 0s, 1s;
+}
+svg#freepik_stories-starman.animated #freepik--Stars--inject-2 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) zoomIn,
+    3s Infinite linear floating;
+  animation-delay: 0.1s, 1.1s;
+  opacity: 0;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes floating {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+svg#freepik_stories-sign-up:not(.animated) .animable {
+  opacity: 0;
+}
+svg#freepik_stories-sign-up.animated #freepik--Shadows--inject-2 {
+  animation: 2.6s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) fadeIn;
+  animation-delay: 0s;
+}
+svg#freepik_stories-sign-up.animated #freepik--Tab--inject-2 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideUp;
+  animation-delay: 0s;
+}
+svg#freepik_stories-sign-up.animated #freepik--Padlock--inject-2 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) fadeIn;
+  animation-delay: 0s;
+}
+svg#freepik_stories-sign-up.animated #freepik--Device--inject-2 {
+  animation: 1.3s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideLeft;
+  animation-delay: 0s;
+}
+svg#freepik_stories-sign-up.animated #freepik--Screen--inject-2 {
+  animation: 1.2s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideLeft;
+  animation-delay: 0s;
+}
+svg#freepik_stories-sign-up.animated #freepik--window--inject-2 {
+  animation: 1.1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideLeft;
+  animation-delay: 0s;
+}
+svg#freepik_stories-sign-up.animated #freepik--Plant--inject-2 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+  animation-delay: 0s;
+}
+svg#freepik_stories-sign-up.animated #freepik--user-icon--inject-2 {
+  animation: 1.3s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideLeft,
+    1.5s Infinite linear floating;
+  animation-delay: 0s, 1.3s;
+}
+svg#freepik_stories-sign-up.animated #freepik--Notification--inject-2 {
+  animation: 1.5s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideLeft,
+    1.5s Infinite linear floating;
+  animation-delay: 0s, 1.5s;
+}
+svg#freepik_stories-sign-up.animated #freepik--Mail--inject-2 {
+  animation: 1.8s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideLeft,
+    1.5s Infinite linear floating;
+  animation-delay: 0s, 1.8s;
+}
+svg#freepik_stories-sign-up.animated #freepik--Character--inject-2 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+  animation-delay: 0s;
+}
+svg#freepik_stories-sign-up.animated #freepik--speech-bubble--inject-2 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+  animation-delay: 0s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: inherit;
+  }
+}
+@keyframes slideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes floating {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+svg#freepik_stories-login:not(.animated) .animable {
+  opacity: 0;
+}
+svg#freepik_stories-login.animated #freepik--Floor--inject-2 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) fadeIn;
+  animation-delay: 0s;
+}
+svg#freepik_stories-login.animated #freepik--Shadow--inject-2 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideUp;
+  animation-delay: 0s;
+}
+svg#freepik_stories-login.animated #freepik--Device--inject-2 {
+  animation: 1.3s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideLeft;
+  animation-delay: 0s;
+}
+svg#freepik_stories-login.animated #freepik--Window--inject-2 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideLeft;
+  animation-delay: 0s;
+}
+svg#freepik_stories-login.animated #freepik--Plants--inject-2 {
+  animation: 0.8s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) zoomIn;
+  animation-delay: 0s;
+}
+svg#freepik_stories-login.animated #freepik--Clouds--inject-2 {
+  animation: 1.1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideRight,
+    1.5s Infinite linear floating;
+  animation-delay: 0s, 1.1s;
+}
+svg#freepik_stories-login.animated #freepik--Character--inject-2 {
+  animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) slideDown;
+  animation-delay: 0s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: inherit;
+  }
+}
+@keyframes slideLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes floating {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

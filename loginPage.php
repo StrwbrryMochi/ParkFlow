@@ -64,11 +64,11 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In | BCP</title>
+    <title>Sign In</title>
     <link rel="stylesheet" href="css/sweetalert.css">
     <script src="js/sweetalert.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="icon" id="logo" href="img/logo.svg" type="image/x-icon">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -79,55 +79,65 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
 </head>
 <body>
-<div class="login-page">
-<div class="login-container" id="login-container">
-      <div class="form-container sign-up">
-        <form action="php/register.php" method ="POST"> 
-            <h1>Create Account</h1>
-            <input autocomplete="off" name="Name" type="text" placeholder="Name" required/>
-            <input autocomplete="off" name="Email" type="email" placeholder="Email" required/>
-            <div class="password-container" id="signup-pass-container">
-                <input name="Password" type="password" id="signUpPassword" placeholder="Password" required>
-                <i class="fa fa-eye" id="toggleSignUpPassword"></i>
-            </div>
-            <button name="registerFirst" class="button" type="submit">Sign Up</button>
-        </form>
+    <main>
+    <header>
+  <nav class="navbar">
+    <div class="logo-section">
+      <a href="#" class="logo" id="logo">Park<span>Flow</span></a>
     </div>
-    
-    <div class="form-container sign-in">
+    <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="auth-buttons">
+      <a href="loginPage.php" class="sign-in">Sign In</a>
+      <a href="register.php" class="sign-up">Sign Up</a>
+    </div>
+  </nav>
+</header>
+
+<section class="login-container">
+      <div class="login-form">
+        <h2>Sign In</h2>
         <form autocomplete="off" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-            <h1>Sign In</h1>
-            <input name="Email" type="email" placeholder="Email" required/>
-            <div class="password-container">
-                <input name="Password" type="password" id="signInPassword" placeholder="Password" required>
-                <i class="fa fa-eye" id="toggleSignInPassword"></i>
+        <div class="input-container">
+            <div class="email-field">
+                <input name="Email" type="email" placeholder=" " required/>
+                <label>Email</label>
             </div>
-        
-            
+            <div class="password-field">
+                <input name="Password" type="password" id="LoginPassword" placeholder=" " required>
+                <label>Password</label>
+            </div>
             <button class="button" type="submit">Sign In</button>
-            <div class="forgotpass">
-                <a href="#">Forgot Password?</a>
-            </div>
+        </div>
         </form>
       </div>
-      <div class="toggle-container">
-        <div class="toggle">
-            <div class="toggle-panel toggle-left">
-                <img src="img/logo.png" alt="">
-                <h3>Already have an Account?</h3>
-                <button class="hidden" id="login">Sign In</button>
-            </div>
-            <div class="toggle-panel toggle-right">
-                <img src="img/logo.png" alt="">
-                <h3>Don't have an Account?</h3>
-                <button class="hidden" id="register">Sign Up</button>
+      <div class="login-img-container">
+        <div class="login-img">
+            <?php include 'img/auth-components/logimg.php'?>
         </div>
       </div>
-    </div>
-    </div>
-    <script src="script/loginSlider.js"></script>
-    <script src="script/togglePassword.js"></script>
+      
+    </section>
+    </main>
 
     <?php include 'php/alerts.php'?>
+
+    <script>
+        window.addEventListener('load', function(){
+        document.querySelector('.login-form').classList.add('visible');
+        })
+    </script>
+
+    <script>
+        window.addEventListener('load', function() {
+        document.querySelector('.login-img-container').classList.add('show');
+    })
+    </script>
+     <script src="script/togglePassword.js"></script>
+    <script src="script/hover.js"></script>
 </body>
 </html>
