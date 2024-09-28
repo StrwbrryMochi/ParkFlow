@@ -6,7 +6,7 @@ if (isset($_GET['welcome_user']) && $_GET['welcome_user'] == 'true') {
     $profilePhoto = $Photo;  // Make sure $photo is defined and set before using it
     
     echo "<script>
-        var username = '" . $Name . "';
+        var username = '" . $FirstName . "';
         var profilePhoto = '" . $Photo. "'; 
         Swal.fire({
             position: 'top',
@@ -24,7 +24,7 @@ if (isset($_GET['welcome_admin']) && $_GET['welcome_admin'] == 'true') {
     $profilePhoto = $Photo;  // Make sure $photo is defined and set before using it
     
     echo "<script>
-        var username = '" . $Name . "';
+        var username = '" . $FirstName . "';
         var profilePhoto = '" . $Photo. "'; 
         Swal.fire({
             position: 'top',

@@ -10,15 +10,21 @@ session_start();
             $row = mysqli_fetch_assoc($result);
             $userID = $row['userID'];
             $Email = $row['Email'];
-            $Name = $row['FirstName'];
+            $FirstName = $row['FirstName'];
+            $LastName = $row['LastName'];
+            $Gender = $row['Gender'];
+            $DateofBirth = $row['DateofBirth'];
+            $Address = $row['Address'];
+            $PhoneNumber = $row['PhoneNumber'];
             $Photo = '../uploads/'.$row['Photo'];
+            $account_Type = $row['account_Type'];
         }
         if($row['account_Type'] != 2){
             echo "<script>window.location.href='../loginPage.php?Error=true';</script>";
         }
         
     } else {
-        echo "You are not in session";
+        echo "<script>window.location.href='../staffPage/session.php?session=error';</script>";
         exit;
     }
 
